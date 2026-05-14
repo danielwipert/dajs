@@ -25,11 +25,13 @@ from dajs.providers.stub_llm import StubLLMProvider
 from dajs.providers.stub_search import StubSearchProvider
 from dajs.stages import s2_filter, s6_state
 from dajs.stages.s1_search import run_search
+from dajs.stages.s3_enrich import run_enrich
 
 
 CONFIG_DIR = Path(__file__).resolve().parent.parent / "config"
 STATE_DIR = Path(__file__).resolve().parent.parent / "state"
 DEBUG_FILTERED = STATE_DIR / "_debug_filtered.json"
+DEBUG_ENRICHED = STATE_DIR / "_debug_enriched.json"
 
 
 def load_configs() -> dict:
@@ -91,23 +93,35 @@ def main() -> None:
 
     # Stage 1
     raw_jobs = run_search(search_provider, configs["search"], configs["filters"])
-    print(f"Stage 1 — search:  {len(raw_jobs)} raw jobs")
+    print(f"Stage 1 — search:   {len(raw_jobs)} raw jobs")
 
-    # Stage 2
+    # Stage 2 — hard filters (ATS + tentative location + dedup)
     filtered = s2_filter.run_filters(raw_jobs, state, configs["filters"])
-    print(f"Stage 2 — filters: {len(filtered)} survived")
-
-    # Persist seen + debug snapshot
-    s6_state.add_seen_jobs(state["seen"], [j.job_id for j in filtered], today=today)
-    s6_state.save_state(state)
+    print(f"Stage 2 — filters:  {len(filtered)} survived")
 
     DEBUG_FILTERED.parent.mkdir(parents=True, exist_ok=True)
     DEBUG_FILTERED.write_text(
         json.dumps([j.model_dump(mode="json") for j in filtered], indent=2),
         encoding="utf-8",
     )
+
+    # Stage 3 — enrich (fetch ATS pages + extract + post-enrich location backstop)
+    enriched = run_enrich(filtered, configs["filters"])
+    print(f"Stage 3 — enrich:   {len(enriched)} enriched")
+
+    DEBUG_ENRICHED.write_text(
+        json.dumps([j.model_dump(mode="json") for j in enriched], indent=2),
+        encoding="utf-8",
+    )
+
+    # Stamp dedup ONLY for jobs that survived enrichment, so fetch failures
+    # remain eligible for retry tomorrow (spec §4.4).
+    s6_state.add_seen_jobs(state["seen"], [j.job_id for j in enriched], today=today)
+    s6_state.save_state(state)
+
     print()
     print(f"Wrote {DEBUG_FILTERED} ({len(filtered)} jobs)")
+    print(f"Wrote {DEBUG_ENRICHED} ({len(enriched)} jobs)")
     print(f"Updated state/seen_jobs.json ({len(state['seen'])} total)")
 
 
