@@ -1,0 +1,36 @@
+# DAJS LLM scoring configuration
+# Two-stage scoring: cheap bulk model scores all enriched jobs,
+# top-tier review model re-scores the top N.
+
+# Stage 4 — bulk scoring. Cheap, fast, parallelizable.
+bulk_model: "deepseek/deepseek-chat"
+
+# Stage 5 — final review. Top-tier only sees the top scorers.
+review_model: "anthropic/claude-sonnet-4.6"
+
+# Composite score (avg of four dimensions) cutoff. Jobs below this are dropped.
+# Spec §5.3 recommends 70 as the conservative starting point.
+score_threshold: 70
+
+# Of jobs passing the threshold, the top N by composite are sent to Stage 5.
+review_top_n: 15
+
+# Of jobs surviving Stage 5, the top N are published to the day's page section.
+max_jobs_per_day: 10
+
+# How many days of results to retain on the site. Spec §6.1.
+site_retention_days: 7
+
+# Composite score color bands (used by the Jinja template).
+# Spec §7.2.
+score_bands:
+  green: 85
+  blue: 75
+  amber: 70
+
+# Anomaly thresholds (spec §13.3) — logged when triggered.
+anomaly:
+  overconfidence_threshold: 95
+  cluster_window: 5
+  cluster_fraction: 0.8
+  empty_day_streak_warn: 3

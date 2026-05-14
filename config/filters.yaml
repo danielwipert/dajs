@@ -1,0 +1,66 @@
+# DAJS hard filters
+# These run BEFORE any LLM call. Anything that can be eliminated deterministically
+# (ATS, location, dedup) is eliminated here.
+
+# Approved one-page-apply ATS platforms.
+# Each entry maps an ATSPlatform enum value to URL substring patterns
+# that identify the platform from a job's apply_url.
+ats_allowlist:
+  greenhouse:
+    - "boards.greenhouse.io"
+    - "job-boards.greenhouse.io"
+    - "greenhouse.io/embed"
+  lever:
+    - "jobs.lever.co"
+  ashby:
+    - "jobs.ashbyhq.com"
+    - "ashbyhq.com/"
+  dover:
+    - "app.dover.com/jobs"
+    - "app.dover.io/jobs"
+  bamboohr:
+    - ".bamboohr.com/careers"
+    - ".bamboohr.com/jobs"
+  recruitee:
+    - ".recruitee.com"
+  smartrecruiters:
+    - "jobs.smartrecruiters.com"
+    - "careers.smartrecruiters.com"
+
+# Approved locations. Matching is case-insensitive substring against the job's
+# location field. Hybrid roles that list Chicago or Austin as one office pass.
+location_allowlist:
+  chicago:
+    - "chicago, il"
+    - "chicago, illinois"
+    - "chicago"
+  austin:
+    - "austin, tx"
+    - "austin, texas"
+    - "austin"
+  remote:
+    - "remote"
+    - "remote - us"
+    - "remote (us)"
+    - "remote, us"
+    - "united states (remote)"
+    - "anywhere"
+
+# Banned location keywords — if a job's location contains any of these AND
+# none of the approved keywords match a different segment, the job is rejected.
+# Used to defend against false-positive substring matches like
+# "Austin Office (San Francisco preferred)".
+location_blocklist:
+  - "san francisco"
+  - "new york"
+  - "nyc"
+  - "seattle"
+  - "boston"
+  - "los angeles"
+  - "denver"
+  - "london"
+  - "berlin"
+  - "toronto"
+
+# Dedup history pruning window (days). Spec §3.4.
+dedup_prune_days: 90

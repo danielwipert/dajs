@@ -1,0 +1,26 @@
+# DAJS search configuration
+# One broad query per day. Recall over precision — the LLM scoring stage handles precision.
+# Add or remove keyword variants here without code changes.
+
+keywords:
+  - "forward deployed engineer"
+  - "forward deployed strategist"
+  - "AI implementation"
+  - "AI solutions architect"
+  - "solutions engineer"
+  - "implementation engineer"
+  - "customer engineer"
+  - "deployment engineer"
+  - "applied AI"
+  - "AI engineer"
+
+# SerpAPI Google Jobs endpoint parameters.
+# https://serpapi.com/google-jobs-api
+serpapi:
+  engine: google_jobs
+  hl: en
+  gl: us
+  # Job-posting freshness: last 3 days (gives Mon runs Fri-Sun postings).
+  chips: "date_posted:3days"
+  # Max results pulled per run; SerpAPI paginates if higher.
+  num: 100
