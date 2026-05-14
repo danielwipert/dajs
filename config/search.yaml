@@ -14,13 +14,22 @@ keywords:
   - "applied AI"
   - "AI engineer"
 
-# SerpAPI Google Jobs endpoint parameters.
-# https://serpapi.com/google-jobs-api
+# SerpAPI Google Web Search endpoint parameters.
+#
+# Why Google Web Search instead of Google Jobs:
+# Google Jobs aggregates from LinkedIn / Indeed / company career sites and
+# rarely surfaces direct Greenhouse/Lever/Ashby URLs. Google Web Search with a
+# site: filter for our ATS allowlist guarantees every result lands on an
+# approved one-page-apply flow by construction.
+#
+# Trade-off: we lose Google Jobs' structured location/posted_date fields.
+# Phase 3 fetches the ATS page anyway, so we get those fields from the page
+# instead. Location filtering is therefore deferred to post-enrichment.
 serpapi:
-  engine: google_jobs
+  engine: google
   hl: en
   gl: us
-  # Job-posting freshness: last 3 days (gives Mon runs Fri-Sun postings).
-  chips: "date_posted:3days"
-  # Max results pulled per run; SerpAPI paginates if higher.
   num: 100
+  # Restrict to the last week of indexing. SerpAPI passes this through as
+  # Google's `tbs=qdr:w` (qdr = quick-date-range). Tune as needed.
+  tbs: "qdr:w"

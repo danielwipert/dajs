@@ -28,22 +28,32 @@ class LocationCategory(str, Enum):
 
 
 class RawJob(BaseModel):
-    """Direct output of the search provider."""
+    """Direct output of the search provider.
+
+    `company` and `location` are best-effort at this stage: Google Web Search
+    snippets often omit them. Phase 3 (enrichment) re-extracts both from the
+    actual ATS page and overwrites these fields on the EnrichedJob.
+    """
 
     title: str
-    company: str
-    location: str
+    company: str = ""
+    location: str = ""
     apply_url: HttpUrl
     posted_date: str | None = None
     snippet: str | None = None
 
 
 class FilteredJob(RawJob):
-    """RawJob that passed ATS allowlist, location, and dedup filters."""
+    """RawJob that passed ATS allowlist, location, and dedup filters.
+
+    `location_category` may be None at this stage if the search snippet didn't
+    yield enough signal. Phase 3 re-extracts location from the ATS page and
+    sets a definitive category (or drops the job).
+    """
 
     job_id: str
     ats_platform: ATSPlatform
-    location_category: LocationCategory
+    location_category: LocationCategory | None = None
 
 
 class EnrichedJob(FilteredJob):
