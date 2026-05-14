@@ -35,7 +35,7 @@ from dajs.providers.llm_base import LLMProvider
 from dajs.providers.search_base import SearchProvider
 from dajs.providers.stub_llm import StubLLMProvider
 from dajs.providers.stub_search import StubSearchProvider
-from dajs.stages import s2_filter, s4_score, s5_review, s6_state
+from dajs.stages import s2_filter, s4_score, s5_review, s6_state, s7_site
 from dajs.stages.s1_search import run_search
 from dajs.stages.s3_enrich import run_enrich
 
@@ -177,6 +177,10 @@ def main() -> None:
     }
     s6_state.append_run_log(state["runs"], log_entry)
     s6_state.save_state(state)
+
+    # Stage 7 — render the public site
+    rendered_path = s7_site.write_site(state["results"], configs["scoring"])
+    print(f"Stage 7 — site:      wrote {rendered_path.relative_to(Path.cwd()) if rendered_path.is_relative_to(Path.cwd()) else rendered_path}")
 
     print()
     print(f"daily_results.json: {sum(len(v) for v in state['results'].values())} jobs across {len(state['results'])} days")

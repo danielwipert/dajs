@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>DAJS — Dan's AI Job Search</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-feature-settings: "ss01", "cv11"; }
+    .score-band-green { background: #16a34a; color: white; }
+    .score-band-blue  { background: #2563eb; color: white; }
+    .score-band-amber { background: #ca8a04; color: white; }
+    .score-band-mute  { background: #94a3b8; color: white; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="max-w-4xl mx-auto px-6 py-5 flex items-baseline justify-between">
+      <h1 class="text-xl font-semibold tracking-tight">DAJS</h1>
+      <div class="text-sm text-slate-500">
+        last updated <span class="font-medium text-slate-700">{{ generated_at }}</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-8 space-y-12">
+    {% if not days %}
+      <div class="text-center text-slate-500 py-16">
+        No jobs published yet. Check back after the next daily run.
+      </div>
+    {% endif %}
+
+    {% for day in days %}
+      <section>
+        <header class="mb-4 flex items-baseline gap-3">
+          <h2 class="text-lg font-semibold text-slate-900">{{ day.label }}</h2>
+          <span class="text-sm text-slate-500">{{ day.jobs|length }} job{% if day.jobs|length != 1 %}s{% endif %}</span>
+        </header>
+
+        {% if not day.jobs %}
+          <p class="text-sm italic text-slate-400">no qualifying jobs this day</p>
+        {% endif %}
+
+        <div class="space-y-3">
+          {% for job in day.jobs %}
+            <article class="bg-white border border-slate-200 rounded-lg p-5 hover:border-slate-300 transition-colors">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0">
+                  <div class="w-14 h-14 rounded flex items-center justify-center text-sm font-bold tabular-nums {{ job.score_band_class }}">
+                    {{ job.score_display }}
+                  </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                      <h3 class="text-base font-semibold text-slate-900 leading-snug">{{ job.title }}</h3>
+                      <p class="mt-0.5 text-sm text-slate-600">
+                        <span class="font-medium">{{ job.company }}</span>
+                        <span class="text-slate-400">·</span>
+                        <span>{{ job.location_display }}</span>
+                        <span class="text-slate-400">·</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700">{{ job.ats_platform }}</span>
+                      </p>
+                    </div>
+                    <a href="{{ job.apply_url }}" target="_blank" rel="noopener noreferrer"
+                       class="flex-shrink-0 inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-slate-900 text-white hover:bg-slate-700 transition-colors">
+                      Apply
+                    </a>
+                  </div>
+                  <p class="mt-3 text-sm text-slate-700 leading-relaxed">{{ job.rationale }}</p>
+                  <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
+                    <span><span class="font-semibold text-slate-700">{{ job.role_fit_score }}</span> Role</span>
+                    <span><span class="font-semibold text-slate-700">{{ job.experience_match_score }}</span> Experience</span>
+                    <span><span class="font-semibold text-slate-700">{{ job.mission_fit_score }}</span> Mission</span>
+                    <span><span class="font-semibold text-slate-700">{{ job.seniority_match_score }}</span> Seniority</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  </main>
+
+  <footer class="max-w-4xl mx-auto px-6 py-6 text-xs text-slate-400 border-t border-slate-200">
+    DAJS · daily curated job feed · {{ retention_days }}-day rolling window
+  </footer>
+</body>
+</html>

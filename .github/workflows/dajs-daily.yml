@@ -1,0 +1,65 @@
+name: DAJS daily
+
+on:
+  schedule:
+    # 13:00 UTC = 08:00 America/Chicago (CDT). Adjust for CST if needed.
+    - cron: "0 13 * * *"
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run DAJS pipeline
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python -m dajs.run
+
+      - name: Summarize run
+        if: always()
+        run: |
+          if [ -f state/run_log.json ]; then
+            echo "### Run log tail" >> $GITHUB_STEP_SUMMARY
+            echo '```json' >> $GITHUB_STEP_SUMMARY
+            python -c "import json,sys; print(json.dumps(json.load(open('state/run_log.json'))[-1], indent=2))" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Commit and push state changes
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/ state/
+
+          if git diff --cached --quiet; then
+            echo "No state or site changes to commit."
+            exit 0
+          fi
+
+          PUBLISHED=$(python -c "import json,sys; r=json.load(open('state/run_log.json'))[-1]; print(r['counts'].get('published', 0))")
+          DATE=$(python -c "import json,sys; r=json.load(open('state/run_log.json'))[-1]; print(r['date'])")
+          git commit -m "DAJS daily update — ${DATE} — ${PUBLISHED} jobs published"
+          git push
