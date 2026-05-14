@@ -35,3 +35,6 @@ Thumbs.db
 
 # DAJS local debug artifacts
 state/_debug_*.json
+
+# Resume source file (extracted to config/resume.txt which IS tracked)
+planning/Daniel_Wipert_Resume*.docx

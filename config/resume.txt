@@ -1,3 +1,59 @@
-# Placeholder — paste Daniel's resume here as clean plain text before Phase 4.
-# This file is loaded once at pipeline start and passed verbatim to every
-# scoring prompt as fixed context. No formatting tricks; LLMs read prose fine.
+DANIEL S. WIPERT
+Chicago, IL  •  224-567-0564  •  wipertds@gmail.com  •  linkedin.com/in/daniel-wipert
+Forward Deployed Strategist  •  Forward Deployed Engineer  •  AI Solutions Architect
+AI systems operator with 15 years deploying production systems in customer environments under real constraints. Founder of Chorus AI Systems — deterministic multi-model AI pipelines for regulated industries with closed-loop verification, governance gates, and auditable architecture by design. The translation layer between technical depth and business stakeholders is where I do my best work.
+TECHNICAL SKILLS
+Languages, Core & Infra:  Python, SQL, Bash, REST APIs, JSON/YAML, Git/GitHub, Linux/CLI, AWS, Docker
+AI / LLM Stack:  Anthropic API, OpenAI API, OpenRouter; Claude, GPT, Gemini, Mistral, DeepSeek, Llama, Qwen
+RAG & Retrieval:  Pinecone, Chroma, FAISS, embedding pipelines, deterministic citation validation
+AI Patterns:  Multi-model orchestration, closed-loop verification, agentic pipelines, tool calling, prompt engineering, LLM evals, adversarial testing
+Data & Validation:  Pydantic schemas, Pandas, NumPy, Jupyter
+Document Intelligence:  Multi-format ingestion, PDF generation pipelines (multi-tier render fallback), structured extraction
+Architecture & Governance:  Systems thinking, VSM (Viable System Model), regulatory-aligned design (Fed/OCC/SEC/CFPB)
+PROFESSIONAL EXPERIENCE
+Chorus AI Systems  —  Founder & Principal (2025 – Present)
+Chicago, IL
+Built and deployed CASDAM, a production document-intelligence pipeline for regulated financial workflows; multi-model orchestration across six LLM providers via OpenRouter and direct Anthropic/OpenAI APIs.
+Architected closed-loop verification: generator/verifier pairs structurally different by design; immutable factlist after computation; deterministic citation validation in Stage 6 RAG over multi-vector-DB retrieval (Pinecone, Chroma, FAISS).
+Implemented constitutional governance constraints in code — no unverified output released, mandatory degradation disclosure, governance gates at every stage; full Stafford Beer VSM with explicit recursion across orchestrator, stages, and Stage 4 generation/verification pair.
+Production operating metrics: ~$0.04/run, ~150s end-to-end, three-tier PDF render fallback, preflight model availability checks, adversarial test infrastructure.
+Customer-facing throughout: worked directly with technical and compliance stakeholders to define requirements, deploy in client environments, and debug on real workflows post-launch; produced 30-60-90 day implementation roadmaps for community banking and financial services.
+Published thought leadership on systemic risks of single-model AI architectures in regulated environments; engineering failure frameworks applied to AI governance.
+Bodily  —  Senior Director, Integrated Supply Chain (2022 – 2025)
+New York, NY
+Designed and deployed predictive analytics models embedded into live fulfillment workflows; iterated on outputs based on operational feedback to improve inventory allocation accuracy and reduce costs by 15%.
+Built real-time KPI dashboards translating heterogeneous supply chain data into executive-level decision infrastructure; iterated on metrics and architecture based on stakeholder feedback.
+Designed cross-functional governance frameworks spanning CX, Marketing, and Operations — bridged technical and business stakeholders to align systems and accountability, holding 99.9% on-time delivery at scale.
+Led vendor evaluation and 3PL partner selection end-to-end: translated operational requirements into contract terms and SLAs, then debugged performance gaps post-deployment to reduce fulfillment cost-per-unit while improving delivery speed.
+Summersalt  —  Director, Supply Chain Operations (2018 – 2022)
+St. Louis, MO
+Designed and deployed analytics infrastructure tracking SLA adherence, delivery latency, and cost drivers across a global fulfillment network; iterated on metrics and architecture based on operational feedback.
+Led WMS implementation end-to-end — requirements definition through deployment, debugging operational gaps and adapting system configuration in production through rapid DTC growth.
+Translated complex operational requirements into a unified systems architecture spanning global vendors, 3PLs, and internal teams; bridged technical and business stakeholders to replace siloed infrastructure with a single integrated platform.
+Led international deployment into Canada, Australia, UK, and EU markets; translated operational and regulatory requirements into 3PL/carrier contracts (DHL, FedEx, Global-e), then debugged carrier performance gaps post-launch.
+Haven  —  Director of Operations & Growth Systems (2015 – 2018)
+Nashville, TN
+Led enterprise-wide systems integration spanning ecommerce, manufacturing, fulfillment, and customer lifecycle — translated complex cross-functional requirements into a unified operational platform, replacing siloed tooling.
+Built and deployed embedded experimentation frameworks (A/B testing, CRO) directly into production workflows; iterated on test design and measurement infrastructure based on real-world conversion data.
+Designed real-time data visibility frameworks translating raw operational data from manufacturing, fulfillment, and ecommerce into executive decision-making infrastructure.
+Partnered with founders end-to-end on product lifecycle (concept through US-based manufacturing to DTC launch); translated product requirements into operational and supply chain system design.
+Etsy  —  Manager, Risk Operations (2013 – 2015)
+New York, NY
+Designed and deployed data-driven fraud detection systems integrated into core platform and payment workflows; identified failure modes and iterated on detection logic in production to protect $2B+ in annual transaction volume while maintaining seller experience.
+Built closed-loop risk intelligence: real-time analytics embedded into platform decisioning with feedback loops connecting downstream fraud outcomes back into upstream detection.
+Translated complex risk and regulatory requirements into operational system design; bridged engineering, payments, product, and compliance stakeholders to embed risk logic directly into platform workflows.
+Built compliance-aligned risk governance across multiple jurisdictions (US, EU); debugged operational and regulatory gaps in production at scale.
+Prevented $2.5M+ in attempted fraud through data-driven investigations and active partnership with federal law enforcement (FBI, US Secret Service); led four cross-regional teams (NYC, Hudson, Dublin) of 18 analysts.
+Bonobos  —  Manager, Ecommerce & Customer Experience (2010 – 2013)
+New York, NY
+Designed and deployed customer operations infrastructure that scaled the business from $10M to $100M+ — built the systems and processes that absorbed 10x growth without operational breakdown.
+Built closed-loop feedback systems connecting real-time customer data to merchandising, marketing, and product teams; embedded customer intelligence into upstream workflows.
+Led 40-person team through hypergrowth; key operator through the maturation arc that positioned Bonobos for its $300M+ acquisition by Walmart.
+EDUCATION
+Master of Arts, English  —  Virginia Commonwealth University
+Bachelor of Arts, English  (Minor: Secondary Education)  —  Wake Forest University
+CERTIFICATIONS & TECHNICAL TRAINING
+AI Strategies for Business Transformation  —  Kellogg School of Management, Northwestern University
+Generative AI: Leader Certification + LLMs & Responsible AI  —  Google
+Generative AI Certification  —  Microsoft
+Applied Python for Data Extraction & Automation  —  University of Michigan

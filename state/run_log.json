@@ -1,1 +1,61 @@
-[]
+[
+  {
+    "counts": {
+      "advanced_to_review": 0,
+      "enriched": 0,
+      "filtered": 3,
+      "published": 0,
+      "raw": 5,
+      "reviewed": 0,
+      "scored": 0
+    },
+    "date": "2026-05-13",
+    "errors": [],
+    "finished_at": "2026-05-14T03:17:53+00:00",
+    "llm_usage": {
+      "by_model": {},
+      "calls": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0,
+      "prompt_tokens": 0,
+      "total_tokens": 0
+    },
+    "started_at": "2026-05-14T03:17:48+00:00"
+  },
+  {
+    "counts": {
+      "advanced_to_review": 3,
+      "enriched": 3,
+      "filtered": 10,
+      "published": 3,
+      "raw": 10,
+      "reviewed": 3,
+      "scored": 3
+    },
+    "date": "2026-05-13",
+    "errors": [],
+    "finished_at": "2026-05-14T03:19:39+00:00",
+    "llm_usage": {
+      "by_model": {
+        "anthropic/claude-sonnet-4.6": {
+          "calls": 3,
+          "completion_tokens": 514,
+          "cost_usd": 0.045873000000000004,
+          "prompt_tokens": 12721
+        },
+        "deepseek/deepseek-chat": {
+          "calls": 3,
+          "completion_tokens": 489,
+          "cost_usd": 0.00372641,
+          "prompt_tokens": 10285
+        }
+      },
+      "calls": 6,
+      "completion_tokens": 1003,
+      "cost_usd": 0.0496,
+      "prompt_tokens": 23006,
+      "total_tokens": 24009
+    },
+    "started_at": "2026-05-14T03:18:38+00:00"
+  }
+]
