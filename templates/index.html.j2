@@ -1,79 +1,249 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
   <meta name="robots" content="noindex, nofollow">
   <title>DAJS — Dan's AI Job Search</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <style>
-    body { font-feature-settings: "ss01", "cv11"; }
-    .score-band-green { background: #16a34a; color: white; }
-    .score-band-blue  { background: #2563eb; color: white; }
-    .score-band-amber { background: #ca8a04; color: white; }
-    .score-band-mute  { background: #94a3b8; color: white; }
+    :root {
+      --bg-0: #08080b;
+      --bg-1: #0d0d11;
+      --bg-2: #131319;
+      --bg-3: #1a1a22;
+      --border: rgba(255,255,255,0.06);
+      --border-strong: rgba(255,255,255,0.10);
+    }
+    html, body { background: var(--bg-0); }
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-feature-settings: "ss01", "cv11", "cv02";
+      color: #e4e4e7;
+      min-height: 100vh;
+      background:
+        radial-gradient(1100px 600px at 85% -10%, rgba(99,102,241,0.10), transparent 60%),
+        radial-gradient(900px 500px at -10% 10%, rgba(16,185,129,0.07), transparent 55%),
+        var(--bg-0);
+      background-attachment: fixed;
+    }
+    .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    /* ---- Score badge ---- */
+    .score {
+      position: relative;
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.02em;
+      background: var(--bg-3);
+      color: #f4f4f5;
+      border: 1px solid var(--border-strong);
+      transition: transform .15s ease, box-shadow .25s ease;
+    }
+    .score::after {
+      content: "";
+      position: absolute; inset: -1px;
+      border-radius: 14px;
+      padding: 1px;
+      background: linear-gradient(140deg, var(--ring, transparent), transparent 60%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+              mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+    .score-band-green {
+      --ring: rgba(16,185,129,0.85);
+      background: linear-gradient(160deg, rgba(16,185,129,0.18), rgba(16,185,129,0.04) 70%), var(--bg-3);
+      color: #d1fae5;
+      box-shadow: 0 0 0 1px rgba(16,185,129,0.25), 0 8px 24px -10px rgba(16,185,129,0.45);
+    }
+    .score-band-blue {
+      --ring: rgba(99,102,241,0.85);
+      background: linear-gradient(160deg, rgba(99,102,241,0.20), rgba(99,102,241,0.04) 70%), var(--bg-3);
+      color: #e0e7ff;
+      box-shadow: 0 0 0 1px rgba(99,102,241,0.28), 0 8px 24px -10px rgba(99,102,241,0.50);
+    }
+    .score-band-amber {
+      --ring: rgba(245,158,11,0.85);
+      background: linear-gradient(160deg, rgba(245,158,11,0.18), rgba(245,158,11,0.04) 70%), var(--bg-3);
+      color: #fef3c7;
+      box-shadow: 0 0 0 1px rgba(245,158,11,0.25), 0 8px 24px -10px rgba(245,158,11,0.45);
+    }
+    .score-band-mute {
+      --ring: rgba(148,163,184,0.55);
+      color: #cbd5e1;
+    }
+
+    /* ---- Card ---- */
+    .card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0)) , var(--bg-1);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: border-color .2s ease, transform .2s ease, background .2s ease;
+    }
+    .card:hover {
+      border-color: var(--border-strong);
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0)) , var(--bg-2);
+    }
+
+    /* ---- Apply button ---- */
+    .btn-apply {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0a0a0b;
+      background: linear-gradient(180deg, #fafafa, #d4d4d8);
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 6px 14px -8px rgba(0,0,0,0.6);
+      transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn-apply:hover {
+      background: linear-gradient(180deg, #ffffff, #e4e4e7);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset, 0 10px 20px -10px rgba(0,0,0,0.7);
+      transform: translateY(-1px);
+    }
+    .btn-apply svg { opacity: .7; }
+
+    /* ---- Pill ---- */
+    .pill {
+      display: inline-flex; align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: lowercase;
+      background: rgba(255,255,255,0.04);
+      color: #a1a1aa;
+      border: 1px solid var(--border);
+    }
+
+    /* ---- Dimension chips ---- */
+    .dim {
+      display: inline-flex; align-items: baseline; gap: 5px;
+      font-size: 11.5px;
+      color: #71717a;
+    }
+    .dim b {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-weight: 600;
+      color: #e4e4e7;
+      letter-spacing: -0.01em;
+    }
+
+    /* ---- Header ---- */
+    .header-blur {
+      backdrop-filter: saturate(140%) blur(12px);
+      -webkit-backdrop-filter: saturate(140%) blur(12px);
+      background: rgba(8,8,11,0.65);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #a7f3d0, #10b981 60%, #047857);
+      box-shadow: 0 0 10px rgba(16,185,129,0.6);
+    }
+
+    .divider-soft {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+    }
+
+    /* anchor links on day headers */
+    .day-anchor { color: #52525b; opacity: 0; transition: opacity .15s ease; }
+    section:hover .day-anchor { opacity: 1; }
+
+    /* selection */
+    ::selection { background: rgba(99,102,241,0.35); color: #fff; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased">
-  <header class="border-b border-slate-200 bg-white">
-    <div class="max-w-4xl mx-auto px-6 py-5 flex items-baseline justify-between">
-      <h1 class="text-xl font-semibold tracking-tight">DAJS</h1>
-      <div class="text-sm text-slate-500">
-        last updated <span class="font-medium text-slate-700">{{ generated_at }}</span>
+<body class="antialiased">
+  <header class="header-blur sticky top-0 z-20">
+    <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="logo-dot"></span>
+        <h1 class="text-[15px] font-semibold tracking-tight text-zinc-100">DAJS</h1>
+        <span class="text-zinc-600 text-sm">·</span>
+        <span class="text-[13px] text-zinc-500 hidden sm:inline">Dan's AI Job Search</span>
+      </div>
+      <div class="text-[12px] text-zinc-500 flex items-center gap-2">
+        <span class="hidden sm:inline">updated</span>
+        <span class="mono text-zinc-300">{{ generated_at }}</span>
       </div>
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-6 py-8 space-y-12">
+  <main class="max-w-4xl mx-auto px-6 pt-10 pb-16 space-y-14">
     {% if not days %}
-      <div class="text-center text-slate-500 py-16">
-        No jobs published yet. Check back after the next daily run.
+      <div class="text-center py-24">
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-zinc-900 border border-zinc-800 mb-4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-zinc-500">
+            <path d="M12 6v6l4 2" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="9"/>
+          </svg>
+        </div>
+        <p class="text-zinc-400">No jobs published yet.</p>
+        <p class="text-zinc-600 text-sm mt-1">Check back after the next daily run.</p>
       </div>
     {% endif %}
 
     {% for day in days %}
       <section>
-        <header class="mb-4 flex items-baseline gap-3">
-          <h2 class="text-lg font-semibold text-slate-900">{{ day.label }}</h2>
-          <span class="text-sm text-slate-500">{{ day.jobs|length }} job{% if day.jobs|length != 1 %}s{% endif %}</span>
+        <header class="mb-5 flex items-baseline gap-3">
+          <h2 class="text-[13px] font-semibold uppercase tracking-[0.14em] text-zinc-400">{{ day.label }}</h2>
+          <span class="text-zinc-700">·</span>
+          <span class="text-[12px] text-zinc-500 mono">{{ day.jobs|length }} job{% if day.jobs|length != 1 %}s{% endif %}</span>
+          <div class="flex-1 ml-3 divider-soft"></div>
         </header>
 
         {% if not day.jobs %}
-          <p class="text-sm italic text-slate-400">no qualifying jobs this day</p>
+          <p class="text-sm italic text-zinc-600">no qualifying jobs this day</p>
         {% endif %}
 
         <div class="space-y-3">
           {% for job in day.jobs %}
-            <article class="bg-white border border-slate-200 rounded-lg p-5 hover:border-slate-300 transition-colors">
+            <article class="card p-5">
               <div class="flex items-start gap-4">
                 <div class="flex-shrink-0">
-                  <div class="w-14 h-14 rounded flex items-center justify-center text-sm font-bold tabular-nums {{ job.score_band_class }}">
-                    {{ job.score_display }}
-                  </div>
+                  <div class="score {{ job.score_band_class }}">{{ job.score_display }}</div>
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-start justify-between gap-3">
                     <div class="min-w-0">
-                      <h3 class="text-base font-semibold text-slate-900 leading-snug">{{ job.title }}</h3>
-                      <p class="mt-0.5 text-sm text-slate-600">
-                        <span class="font-medium">{{ job.company }}</span>
-                        <span class="text-slate-400">·</span>
+                      <h3 class="text-[15px] font-semibold text-zinc-50 leading-snug tracking-tight">{{ job.title }}</h3>
+                      <p class="mt-1 text-[13px] text-zinc-400 flex flex-wrap items-center gap-x-2 gap-y-1">
+                        <span class="font-medium text-zinc-200">{{ job.company }}</span>
+                        <span class="text-zinc-700">·</span>
                         <span>{{ job.location_display }}</span>
-                        <span class="text-slate-400">·</span>
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700">{{ job.ats_platform }}</span>
+                        <span class="text-zinc-700">·</span>
+                        <span class="pill">{{ job.ats_platform }}</span>
                       </p>
                     </div>
-                    <a href="{{ job.apply_url }}" target="_blank" rel="noopener noreferrer"
-                       class="flex-shrink-0 inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-slate-900 text-white hover:bg-slate-700 transition-colors">
+                    <a href="{{ job.apply_url }}" target="_blank" rel="noopener noreferrer" class="btn-apply flex-shrink-0">
                       Apply
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17L17 7"/><path d="M8 7h9v9"/>
+                      </svg>
                     </a>
                   </div>
-                  <p class="mt-3 text-sm text-slate-700 leading-relaxed">{{ job.rationale }}</p>
-                  <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
-                    <span><span class="font-semibold text-slate-700">{{ job.role_fit_score }}</span> Role</span>
-                    <span><span class="font-semibold text-slate-700">{{ job.experience_match_score }}</span> Experience</span>
-                    <span><span class="font-semibold text-slate-700">{{ job.mission_fit_score }}</span> Mission</span>
-                    <span><span class="font-semibold text-slate-700">{{ job.seniority_match_score }}</span> Seniority</span>
+                  <p class="mt-3 text-[13.5px] text-zinc-300 leading-relaxed">{{ job.rationale }}</p>
+                  <div class="mt-4 flex flex-wrap gap-x-5 gap-y-1.5">
+                    <span class="dim"><b>{{ job.role_fit_score }}</b> Role</span>
+                    <span class="dim"><b>{{ job.experience_match_score }}</b> Experience</span>
+                    <span class="dim"><b>{{ job.mission_fit_score }}</b> Mission</span>
+                    <span class="dim"><b>{{ job.seniority_match_score }}</b> Seniority</span>
                   </div>
                 </div>
               </div>
@@ -84,8 +254,9 @@
     {% endfor %}
   </main>
 
-  <footer class="max-w-4xl mx-auto px-6 py-6 text-xs text-slate-400 border-t border-slate-200">
-    DAJS · daily curated job feed · {{ retention_days }}-day rolling window
+  <footer class="max-w-4xl mx-auto px-6 py-8 text-[11.5px] text-zinc-600 border-t border-zinc-900/80 flex items-center justify-between">
+    <span>DAJS · daily curated job feed</span>
+    <span class="mono">{{ retention_days }}-day rolling window</span>
   </footer>
 </body>
 </html>
