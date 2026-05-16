@@ -2,9 +2,9 @@ name: DAJS daily
 
 on:
   schedule:
-    # 13:23 UTC = 08:23 CDT / 07:23 CST. Off-peak minute to avoid GitHub's
+    # 08:33 UTC = 03:33 CDT / 02:33 CST. Off-peak minute to avoid GitHub's
     # top-of-hour scheduler congestion (which silently drops scheduled runs).
-    - cron: "23 13 * * *"
+    - cron: "33 8 * * *"
   workflow_dispatch:
 
 jobs:
