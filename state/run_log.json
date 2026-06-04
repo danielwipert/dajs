@@ -742,5 +742,28 @@
       "total_tokens": 11618
     },
     "started_at": "2026-06-03T12:55:42+00:00"
+  },
+  {
+    "counts": {
+      "advanced_to_review": 0,
+      "enriched": 0,
+      "filtered": 8,
+      "published": 0,
+      "raw": 10,
+      "reviewed": 0,
+      "scored": 0
+    },
+    "date": "2026-06-04",
+    "errors": [],
+    "finished_at": "2026-06-04T11:34:11+00:00",
+    "llm_usage": {
+      "by_model": {},
+      "calls": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0,
+      "prompt_tokens": 0,
+      "total_tokens": 0
+    },
+    "started_at": "2026-06-04T11:33:47+00:00"
   }
 ]
