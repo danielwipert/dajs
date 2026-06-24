@@ -1254,5 +1254,28 @@
       "total_tokens": 0
     },
     "started_at": "2026-06-23T11:39:50+00:00"
+  },
+  {
+    "counts": {
+      "advanced_to_review": 0,
+      "enriched": 0,
+      "filtered": 9,
+      "published": 0,
+      "raw": 10,
+      "reviewed": 0,
+      "scored": 0
+    },
+    "date": "2026-06-24",
+    "errors": [],
+    "finished_at": "2026-06-24T11:23:24+00:00",
+    "llm_usage": {
+      "by_model": {},
+      "calls": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0,
+      "prompt_tokens": 0,
+      "total_tokens": 0
+    },
+    "started_at": "2026-06-24T11:23:14+00:00"
   }
 ]
