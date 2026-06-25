@@ -1277,5 +1277,41 @@
       "total_tokens": 0
     },
     "started_at": "2026-06-24T11:23:14+00:00"
+  },
+  {
+    "counts": {
+      "advanced_to_review": 1,
+      "enriched": 1,
+      "filtered": 9,
+      "published": 1,
+      "raw": 10,
+      "reviewed": 1,
+      "scored": 1
+    },
+    "date": "2026-06-25",
+    "errors": [],
+    "finished_at": "2026-06-25T11:17:10+00:00",
+    "llm_usage": {
+      "by_model": {
+        "anthropic/claude-sonnet-4.6": {
+          "calls": 1,
+          "completion_tokens": 180,
+          "cost_usd": 0.016803,
+          "prompt_tokens": 4701
+        },
+        "deepseek/deepseek-chat": {
+          "calls": 1,
+          "completion_tokens": 187,
+          "cost_usd": 0.0009217901,
+          "prompt_tokens": 3857
+        }
+      },
+      "calls": 2,
+      "completion_tokens": 367,
+      "cost_usd": 0.01772,
+      "prompt_tokens": 8558,
+      "total_tokens": 8925
+    },
+    "started_at": "2026-06-25T11:16:44+00:00"
   }
 ]
