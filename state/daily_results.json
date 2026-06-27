@@ -1,35 +1,4 @@
 {
-  "2026-06-19": [
-    {
-      "apply_url": "https://job-boards.greenhouse.io/coretrustpurchasinggroupllc/jobs/5154859007",
-      "ats_platform": "greenhouse",
-      "company": "coretrustpurchasinggroupllc",
-      "compensation": null,
-      "composite_score": 78.75,
-      "department": null,
-      "description": "CoreTrust helps organizations activate value faster\u2014and get more out of every dollar they spend. Through enterprise-scale\npurchasing\npower, a curated supplier network, deep category\nexpertise\n, and data-driven insights, we enable organizations to make more informed and strategic procurement decisions, accelerate savings, and drive stronger business performance. Today, more than 4,000 organizations rely on CoreTrust to simplify sourcing, reduce complexity, and unlock measurable value across critical spend categories.\nWe are looking for a\nbuilder-oriented AI Engineer\nto design, develop, and deploy enterprise AI solutions that solve real business problems and deliver measurable value.\nThis role is focused on\nbringing AI into production\n\u2013 not training models or conducting research. You will work directly with business leaders to identify high-impact opportunities and translate them into scalable AI applications, including AI agents, copilots, and intelligent workflows.\nSuccess in this role looks like\nAI solutions deployed into production that drive measurable business impact\n, strong adoption across teams, and the development of\nscalable, reusable capabilities embedded into CoreTrust operations\n.\nYou will leverage tools like\nAzure AI Foundry, Azure AI Studio, Snowflake, dbt, and workflow orchestration platforms\nto build solutions that integrate seamlessly into our operations and drive enterprise-wide adoption.\nIf you thrive in a fast-moving environment, enjoy turning ambiguity into execution, and are motivated by delivering tangible outcomes, this is a unique opportunity to shape how AI is applied across an organization.\nResponsibilities\nDesign and deploy AI-powered solutions\nBuild AI agents, copilots, and intelligent workflows using Azure AI Foundry and Azure AI Studio\nDeliver production-ready applications, including retrieval-augmented generation (RAG) and automation tools\nTranslate business needs into scalable solutions\nPartner with cross-functional stakeholders to identify, prioritize, and deliver high-value AI use cases\nFocus on solutions that drive measurable ROI and operational efficiency\nIntegrate AI into the enterprise ecosystem\nConnect AI solutions with enterprise data platforms, including Snowflake\nDevelop and manage data transformations using dbt\nEmbed AI capabilities into internal tools and applications via APIs\nAutomate and optimize workflows\nBuild and orchestrate workflows using tools such as n8n or similar platforms\nImprove process efficiency through intelligent automation\nOperate with strong engineering discipline\nDeliver scalable, maintainable, and reusable solutions\nTrack work within agile frameworks using tools like JIRA\nQualifications\nRequired\n3\u20137+ years\nof experience in AI engineering, data engineering, or software development\nHands-on experience with\nAzure AI Studio, Azure OpenAI, or Azure AI Foundry\nStrong experience working with\nSnowflake and dbt\nProficiency in\nPython\nand experience building and consuming APIs\nDemonstrated ability to deliver\nproduction-grade solutions\nPreferred\nExperience building\nAI agents, copilots, or conversational applications\nFamiliarity with\nworkflow orchestration tools\nsuch as n8n\nExperience with\nRAG architectures and vector databases\nKnowledge of\nMLOps practices\nand production deployment patterns\nRelevant\nAzure certifications\n(AI-102, DP-203, or similar)\nCore\u00a0Capabilities\nAbility to\ntranslate business problems into practical AI solutions\nStrong focus on\nexecution, delivery, and measurable outcomes\nEffective collaboration with\ntechnical and non-technical stakeholders\nAbility to balance\nspeed with engineering rigor\nBenefits\nCompetitive compensation package\nFree individual employee medical coverage\nCompany subsidized dental and vision coverage\nDollar for dollar 401(k) match up to 6% of your salary with immediate vesting\nCompany-paid Short-Term and Long-Term Disability coverage\nEmployee Assistance Program to support your wellbeing and mental health\n$1500 annual stipend for undergraduate/graduate college courses; $500 annual stipend for continuing education courses/certifications\nFree snacks and beverages on-site\nBrand new, state-of-the-art, tech-enabled work environment in downtown Nashville\nFlexible/hybrid work culture",
-      "dimension_justifications": {
-        "experience_match_score": "Daniel's 15 years of experience deploying production systems and AI/LLM stack matches the required 3-7 years of AI engineering experience.",
-        "mission_fit_score": "CoreTrust's focus on measurable AI impact aligns with Daniel's work in regulated industries and customer-deployed AI solutions.",
-        "role_fit_score": "Daniel's focus on deploying production AI solutions aligns with the role's emphasis on bringing AI into production, not just research.",
-        "seniority_match_score": "Daniel's Senior Director and Founder roles match the seniority required for this builder-oriented AI Engineer position."
-      },
-      "employment_type": null,
-      "experience_match_score": 82,
-      "final_composite_score": 73.0,
-      "job_id": "d4dbb18bd692c7ad3c7a4bfc3181d911ebf962db687ddd411a6a4c2bd96b1cb6",
-      "location": "Remote in U.S. or Hybrid in Nashville",
-      "location_category": "remote",
-      "mission_fit_score": 75,
-      "posted_date": null,
-      "published_date": "2026-06-19",
-      "rationale": "Daniel's production RAG pipelines (Pinecone/Chroma/FAISS) and multi-model orchestration directly match CoreTrust's RAG and AI agent requirements, and his stakeholder translation work fits the builder-oriented role. However, the Azure AI Foundry/Snowflake/dbt stack is absent from his resume, and the 3-7 year IC framing undersells his Senior Director/Founder seniority.",
-      "role_fit_score": 78,
-      "seniority_match_score": 80,
-      "snippet": "We are looking for a builder-oriented AI Engineer to design, develop, and deploy enterprise AI solutions that solve real business problems and deliver ...",
-      "title": "AI Engineer"
-    }
-  ],
   "2026-06-25": [
     {
       "apply_url": "https://job-boards.greenhouse.io/natera/jobs/6099223004",
